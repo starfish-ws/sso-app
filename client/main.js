@@ -72,6 +72,9 @@ document.querySelector('#app').innerHTML = `
     <p class="read-the-docs">
       <a href="https://wiki.starfish.ws/en/Getting_Started/PublicApi" target="_blank">Public API docs</a>
     </p>
+    <p class="read-the-docs">
+      <a href="https://github.com/starfish-ws/sso-app" target="_blank">Installation Instructions</a>
+    </p>
   </div>
 `
 setupForm(formCallback);

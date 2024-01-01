@@ -5,6 +5,8 @@ The Starfish SSO Configuration Checker is a web-based application that allows us
 * It includes input fields for Public API endpoint, Console redirect URL, Public API token, User email, and User name.
 * There's a 'Generate Login Link' button to initiate the SSO configuration test.
 
+Live Demo: https://sso-app.starfish.ws
+
 ## How to Use the Starfish SSO Application
 
 Follow these steps to set up and run the Starfish SSO Application on your local machine:
