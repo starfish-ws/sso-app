@@ -66,6 +66,8 @@ document.querySelector('#app').innerHTML = `
             <button type="submit">Generate Login Link</button>
         </form>
     </div>
+    <div class="errors" id="errors">
+    </div>
     <div class="card">
         <button id="open_console_button" disabled="disabled">Open Console</button>
     </div>
@@ -77,5 +79,7 @@ document.querySelector('#app').innerHTML = `
     </p>
   </div>
 `
-setupForm(formCallback);
+setupForm(formCallback, (errors) => {
+    document.getElementById('errors').innerHTML = errors.join('<br />')
+});
 setupOpenConsole();

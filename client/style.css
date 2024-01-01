@@ -128,3 +128,7 @@ button:focus-visible {
     font-size: 15px;
     padding: 0 10px;
 }
+
+.errors {
+    color: #d32323;
+}

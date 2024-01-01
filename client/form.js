@@ -1,10 +1,14 @@
-function handleForm(callback) {
+function handleForm(callback, errorCallback) {
     const storedData = getStoredData();
-    for (let [key, value] of Object.entries(storedData)) {
-        document.querySelector(`input[name=${key}]`).value = value;
+
+    if (storedData) {
+        for (let [key, value] of Object.entries(storedData)) {
+            document.querySelector(`input[name=${key}]`).value = value;
+        }
     }
 
     return function (e) {
+        const errors = [];
         document.getElementById('open_console_button').disabled = true;
         // Prevent default form submission
         e.preventDefault();
@@ -21,31 +25,32 @@ function handleForm(callback) {
         };
 
         if (!data.public_api_endpoint) {
-            console.error('Error: Public API endpoint is required. Please enter a valid API endpoint.');
+            errors.push('Error: Public API endpoint is required. Please enter a valid API endpoint.');
             errorFlag = true;
         }
 
         if (!data.console_link) {
-            console.error('Error: Console redirect link is missing. Please provide the console link.');
+            errors.push('Error: Console redirect link is missing. Please provide the console link.');
             errorFlag = true;
         }
 
         if (!data.token) {
-            console.error('Error: API key is required. Please enter your API key.');
+            errors.push('Error: API key is required. Please enter your API key.');
             errorFlag = true;
         }
 
         if (!data.email) {
-            console.error('Error: Email address is required. Please enter a valid email.');
+            errors.push('Error: Email address is required. Please enter a valid email.');
             errorFlag = true;
         }
 
         if (!data.name) {
-            console.error('Error: Name is required. Please enter your name.');
+            errors.push('Error: Name is required. Please enter your name.');
             errorFlag = true;
         }
 
         if (errorFlag) {
+            errorCallback(errors);
             return;
         }
 
@@ -59,9 +64,9 @@ function handleForm(callback) {
 
 }
 
-export function setupForm(formCallback) {
+export function setupForm(formCallback, errorCallback) {
     document.getElementById('createLinkForm').removeEventListener('submit', handleForm);
-    document.getElementById('createLinkForm').addEventListener('submit', handleForm(formCallback));
+    document.getElementById('createLinkForm').addEventListener('submit', handleForm(formCallback, errorCallback));
 }
 
 export function getStoredData() {
